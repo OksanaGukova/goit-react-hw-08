@@ -1,0 +1,47 @@
+.container {
+        border: 1px solid;
+    width: 360px;
+    border-radius: 4px;
+    margin:auto
+ 
+   
+}
+
+.fieldContainer{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+      
+}
+
+label {
+    margin-bottom: 4px;
+    
+}
+
+.containerItem {
+    padding: 12px;
+}
+
+.button{
+letter-spacing: 0.04em;
+  cursor: pointer;
+  background-color: lightgray;
+   border: 2px solid darkgray;
+}
+
+.buttonContainer {
+ display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  
+}
+
+.errorMessage {
+  height: 1.2em; 
+  color: red;
+}
+
+.input {
+  height: 24px;
+}
