@@ -5,12 +5,12 @@ import css from './UserMenu.module.css'
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector(selectUser);
+  const { name } = useSelector(selectUser);
 
   return (
     <div className={css.container}>
-      <p className={css.text}>Welcome, {user}</p>
- 
+      <p className={css.text}>Welcome, {name}</p>
+
       <button
         className={css.LogoutBtn}
         type="button"
