@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    gap: 12px;
+}
+
+.LogoutBtn {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  padding: 10px 15px;
+  border-radius: 5px;
+   background-color: #555; 
+  
+}
+
+
+.LogoutBtn:hover {
+  background-color: #444; 
+}
+
+.text {
+  color: white;
+}
