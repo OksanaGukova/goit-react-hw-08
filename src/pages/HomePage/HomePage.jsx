@@ -7,9 +7,7 @@ export default function HomePage() {
       <p className={css.introText}>
         Manage your contacts easily and efficiently with our application.
       </p>
-      <div className={css.imageContainer}>
-        <img src='/public/img/img.png' alt="Welcome" className={css.welcomeImage} />
-      </div>
+
     </div>
   );
 }
