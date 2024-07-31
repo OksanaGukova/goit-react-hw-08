@@ -13,6 +13,7 @@ const AppBar = () => {
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </header>
+    
   );
 };
 

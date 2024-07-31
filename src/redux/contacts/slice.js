@@ -1,11 +1,10 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { addContact, deleteContact, fetchContacts } from "./operations";
-import { selectContacts } from "./selectors";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchContacts, addContact, deleteContact } from "./operations";
 
 const contactsSlice = createSlice({
   name: "contacts",
   initialState: {
-    items: [], 
+    items: [],
     isLoading: false,
     error: null,
   },
@@ -29,7 +28,7 @@ const contactsSlice = createSlice({
       .addCase(addContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items.push(action.payload);
+        state.items.push(action.payload); 
       })
       .addCase(addContact.rejected, (state, action) => {
         state.isLoading = false;
@@ -51,7 +50,5 @@ const contactsSlice = createSlice({
       });
   },
 });
-
-
 
 export const contactsReducer = contactsSlice.reducer;

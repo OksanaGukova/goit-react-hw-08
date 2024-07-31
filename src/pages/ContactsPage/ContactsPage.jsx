@@ -4,9 +4,10 @@ import { fetchContacts } from "../../redux/contacts/operations";
 import { selectIsLoading } from "../../redux/contacts/selectors";
 import ContactForm from '../../components/ContactForm/ContactForm'
 import ContactList from "../../components/ContactList/ContactList";
+import css from './ContactsPage.module.css'
 
 
-export default function TasksPage() {
+export default function ContactsPage() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
 
@@ -16,9 +17,9 @@ export default function TasksPage() {
 
   return (
     <>
-      <p>Your contacts</p>
+      <p className={css.title}>Your contacts</p>
       <ContactForm />
-      <div>{isLoading && "Request in progress..."}</div>
+      {isLoading && <p className={css.loading}>Request in progress...</p>}
       <ContactList />
     </>
   );

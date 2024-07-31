@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
+import { addContact, fetchContacts } from "../../redux/contacts/operations";
 import css from "./ContactForm.module.css";
 import Button from "../Button/Button";
 
@@ -25,7 +25,9 @@ const ContactForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(addContact(values));
+    dispatch(addContact(values)).then(() => {
+      dispatch(fetchContacts()); 
+    });
     resetForm();
   };
 
@@ -63,3 +65,5 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+
+
