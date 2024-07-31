@@ -14,7 +14,12 @@ const ContactList = () => {
       ) : (
         <ul className={css.container}>
           {filteredContacts.map((contact) => (
-            <Contact key={contact.id} contact={contact} />
+            <Contact
+              id={contact.id}
+              name={contact.name}
+              number={contact.number}
+              onDelete={handleDelete}
+            />
           ))}
         </ul>
       )}

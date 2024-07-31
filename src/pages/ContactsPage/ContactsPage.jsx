@@ -5,6 +5,7 @@ import { selectIsLoading } from "../../redux/contacts/selectors";
 import ContactForm from '../../components/ContactForm/ContactForm'
 import ContactList from "../../components/ContactList/ContactList";
 import css from './ContactsPage.module.css'
+import SearchBox from "../../components/SearchBox/SearchBox";
 
 
 export default function ContactsPage() {
@@ -19,6 +20,7 @@ export default function ContactsPage() {
     <>
       <p className={css.title}>Your contacts</p>
       <ContactForm />
+      <SearchBox />
       {isLoading && <p className={css.loading}>Request in progress...</p>}
       <ContactList />
     </>
