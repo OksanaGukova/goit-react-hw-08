@@ -1,27 +1,46 @@
+import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { ImPhone } from "react-icons/im";
 import { BsPeopleFill } from "react-icons/bs";
 import css from "./Contact.module.css";
 import { deleteContact } from "../../redux/contacts/operations";
 
-export default function Contact({ contact }) {
+import toast from 'react-hot-toast';
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
+
+export default function Contact({ id, name, number }) {
   const dispatch = useDispatch();
-  const handleDelete = () => dispatch(deleteContact(contact.id));
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDelete = () => {
+    dispatch(deleteContact(id))
+      .then(() => toast.success('Contact deleted successfully'))
+      .catch(() => toast.error('Failed to delete contact'));
+    setIsModalOpen(false);
+  };
+
   return (
-    <li className={css.container}>
-      <div className={css.list}>
-        <div className={css.listItem}>
-          <BsPeopleFill />
-          <p>{contact.name}</p>
+    <>
+      <li className={css.container}>
+        <div className={css.list}>
+          <div className={css.listItem}>
+            <BsPeopleFill />
+            <p>{name}</p>
+          </div>
+          <div className={css.listItem}>
+            <ImPhone />
+            <p>{number}</p>
+          </div>
         </div>
-        <div className={css.listItem}>
-          <ImPhone />
-          <p>{contact.number}</p>
-        </div>
-      </div>
-      <button className={css.delButton} onClick={handleDelete}>
-        Delete
-      </button>
-    </li>
+        <button className={css.delButton} onClick={() => setIsModalOpen(true)}>
+          Delete
+        </button>
+      </li>
+      <DeleteConfirmationModal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        onConfirm={handleDelete}
+      />
+    </>
   );
 }

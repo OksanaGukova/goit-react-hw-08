@@ -6,6 +6,7 @@ import { refreshUser } from "../../redux/auth/operations";
 import RestrictedRoute  from "../RestrictedRoute/RestrictedRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import { Layout } from "../Layout/Layout";
+import { Toaster } from "react-hot-toast";
 
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
@@ -29,7 +30,8 @@ export const App = () => {
 
   return (
     <>
-       <Layout>
+      <Toaster position="top-right" />
+      <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
@@ -57,7 +59,7 @@ export const App = () => {
             }
           />
         </Routes>
-    </Layout>
+      </Layout>
     </>
   );
 };

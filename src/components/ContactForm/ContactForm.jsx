@@ -4,11 +4,12 @@ import { useDispatch } from "react-redux";
 import { addContact, fetchContacts } from "../../redux/contacts/operations";
 import css from "./ContactForm.module.css";
 import Button from "../Button/Button";
+import toast from "react-hot-toast";
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
     .matches(
-      /^(?!.*\.\.)(?!\s)(?!.*\s$)[A-Za-z. ]+$/,
+      /^(?!.*\.\.)(?!\с)(?!.*\с$)[A-Za-z. ]+$/,
       "Name must contain only letters"
     )
     .min(3, "Too Short!")
@@ -25,9 +26,12 @@ const ContactForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(addContact(values)).then(() => {
-      dispatch(fetchContacts()); 
-    });
+    dispatch(addContact(values))
+      .then(() => {
+        toast.success("Contact added successfully");
+        dispatch(fetchContacts());
+      })
+      .catch(() => toast.error("Failed to add contact"));
     resetForm();
   };
 
@@ -65,5 +69,3 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
-
-
