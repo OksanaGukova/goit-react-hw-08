@@ -1,6 +1,9 @@
 import Modal from "react-modal";
 import css from "./DeleteConfirmationModal.module.css";
 
+
+Modal.setAppElement("#root");
+
 const DeleteConfirmationModal = ({ isOpen, onRequestClose, onConfirm }) => {
   return (
     <Modal

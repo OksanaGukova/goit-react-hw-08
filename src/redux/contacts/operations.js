@@ -38,3 +38,21 @@ export const deleteContact = createAsyncThunk(
     }
   }
 );
+
+
+export const editContact = createAsyncThunk(
+  "contacts/editContact",
+  async ({ id, updatedContact }, thunkAPI) => {
+    if (!id) {
+      throw new Error("Contact ID is required");
+    }
+
+    try {
+      const response = await axios.patch(`/contacts/${id}`, updatedContact);
+      thunkAPI.dispatch(saveContact(updatedContact));
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
