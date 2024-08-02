@@ -6,7 +6,6 @@ import css from "./Contact.module.css";
 import { deleteContact, editContact } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
-import { Button, Typography, TextField } from "@mui/material";
 
 export default function Contact({ id, name, number }) {
   const dispatch = useDispatch();
@@ -44,55 +43,45 @@ export default function Contact({ id, name, number }) {
           <div className={css.listItem}>
             <BsPeopleFill />
             {isEditing ? (
-              <TextField
+              <input
+                type="text"
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
-                variant="outlined"
-                size="small"
               />
             ) : (
-              <Typography variant="body1">{name}</Typography>
+              <span>{name}</span>
             )}
           </div>
           <div className={css.listItem}>
             <ImPhone />
             {isEditing ? (
-              <TextField
+              <input
+                type="tel"
                 value={newNumber}
                 onChange={(e) => setNewNumber(e.target.value)}
-                variant="outlined"
-                size="small"
               />
             ) : (
-              <Typography variant="body1">{number}</Typography>
+              <span>{number}</span>
             )}
           </div>
         </div>
         <div className={css.buttonContainer}>
           {isEditing ? (
-            <Button variant="contained" color="primary" onClick={handleSave}>
-              Save
-            </Button>
+            <button onClick={handleSave}>Save</button>
           ) : (
             <>
-              <Button
-                variant="contained"
-                color="error"
-                size="small"
-                sx={{ fontSize: 10 }}
+              <button
                 onClick={() => setIsModalOpen(true)}
+                style={{ backgroundColor: "red", color: "white" }}
               >
                 Delete
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                sx={{ fontSize: 10 }}
+              </button>
+              <button
                 onClick={handleEdit}
+                style={{ backgroundColor: "green", color: "white" }}
               >
                 Edit
-              </Button>
+              </button>
             </>
           )}
         </div>
