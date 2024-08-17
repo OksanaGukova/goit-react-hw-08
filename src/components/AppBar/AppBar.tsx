@@ -5,7 +5,7 @@ import { UserMenu } from "../UserMenu/UserMenu";
 import AuthNav from "../AuthNav/AuthNav";
 import css from './AppBar.module.css'
 
-const AppBar = () => {
+const AppBar: React.FC = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
@@ -13,7 +13,6 @@ const AppBar = () => {
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </header>
-    
   );
 };
 

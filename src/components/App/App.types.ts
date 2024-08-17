@@ -1,5 +1,6 @@
 import { PersistPartial } from 'redux-persist/es/persistReducer';
 import storage from "redux-persist/lib/storage";
+import { ReactNode } from "react";
 
 export interface AuthPersistConfig {
   key: string;
@@ -42,3 +43,33 @@ export interface RootState {
     name: string;
   };
 };
+
+export interface FilterState {
+  name: string;
+}
+
+export interface Contact {
+  id: string;
+  name: string;
+  email: string;
+  number: string;
+}
+
+export interface ContactState {
+  items: Contact[];
+  isLoading: boolean;
+  error: string | null;
+};
+
+
+export interface EditContactParams {
+  id: string;
+  updatedContact: Omit<Contact, "id">;
+}
+
+export interface ButtonProps {
+  selected?: boolean;
+  type?: "button" | "submit" | "reset";
+  children: React.ReactNode;
+  [key: string]: any;
+}

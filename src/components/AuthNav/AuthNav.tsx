@@ -6,7 +6,7 @@ export default function AuthNav() {
    <div className={css.authNav}>
      <NavLink
        to="/register"
-       className={({ isActive }) =>
+       className={({ isActive }: { isActive: boolean }) =>
          isActive ? `${css.link} ${css.active}` : css.link
        }
      >
@@ -14,7 +14,7 @@ export default function AuthNav() {
      </NavLink>
      <NavLink
        to="/login"
-       className={({ isActive }) =>
+       className={({ isActive }: { isActive: boolean }) =>
          isActive ? `${css.link} ${css.active}` : css.link
        }
      >
