@@ -57,7 +57,7 @@ const contactsSlice = createSlice({
       })
       .addCase(
         deleteContact.fulfilled,
-        (state, action: PayloadAction<{ id: string }>) => {
+        (state, action: PayloadAction<{ id: number }>) => {
           state.isLoading = false;
           state.error = null;
           state.items = state.items.filter(
