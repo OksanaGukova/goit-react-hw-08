@@ -2,9 +2,10 @@ import { useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
 import { selectFilteredContacts } from "../../redux/contacts/selectors";
+import { RootState } from "../App/App.types";
 
-const ContactList = () => {
-  const filteredContacts = useSelector(selectFilteredContacts);
+const ContactList: React.FC = () => {
+ const filteredContacts = useSelector((state: RootState) => selectFilteredContacts(state));
 
   return (
     <div>

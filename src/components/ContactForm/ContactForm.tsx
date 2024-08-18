@@ -1,10 +1,12 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContact, fetchContacts } from "../../redux/contacts/operations";
 import css from "./ContactForm.module.css";
 import Button from "../Button/Button";
 import toast from "react-hot-toast";
+import { AppDispatch } from "../../redux/store";
+import { ContactsProps } from "../App/App.types";
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
@@ -22,11 +24,15 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const ContactForm = () => {
-  const dispatch = useDispatch();
+const ContactForm: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = (
+    values: Omit<ContactsProps, "id">,
+    { resetForm }: FormikHelpers<Omit<ContactsProps, "id">>
+  ) => {
     dispatch(addContact(values))
+      .unwrap() 
       .then(() => {
         toast.success("Contact added successfully");
         dispatch(fetchContacts());

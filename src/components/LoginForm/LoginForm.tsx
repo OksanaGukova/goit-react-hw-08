@@ -1,12 +1,17 @@
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import css from './LoginForm.module.css'
+import { AppDispatch } from "../../redux/store";
+import { Credentials } from "../App/App.types";
 
 export const LoginForm = () => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = (
+    values: Credentials,
+    { setSubmitting }: FormikHelpers<Credentials>
+  ) => {
     dispatch(logIn(values))
       .unwrap()
       .then(() => {

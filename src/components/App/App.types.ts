@@ -1,6 +1,7 @@
+import { LoginForm } from './../LoginForm/LoginForm';
 import { PersistPartial } from 'redux-persist/es/persistReducer';
 import storage from "redux-persist/lib/storage";
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 
 export interface AuthPersistConfig {
   key: string;
@@ -48,23 +49,23 @@ export interface FilterState {
   name: string;
 }
 
-export interface Contact {
-  id: string;
+export interface ContactsProps {
+  id: number;
   name: string;
-  email: string;
+  email?: string;
   number: string;
 }
 
 export interface ContactState {
-  items: Contact[];
+  items: ContactsProps[];
   isLoading: boolean;
   error: string | null;
 };
 
 
 export interface EditContactParams {
-  id: string;
-  updatedContact: Omit<Contact, "id">;
+  id: number;
+  updatedContact: Omit<ContactsProps, "id">;
 }
 
 export interface ButtonProps {
@@ -72,4 +73,23 @@ export interface ButtonProps {
   type?: "button" | "submit" | "reset";
   children: React.ReactNode;
   [key: string]: any;
+}
+
+export interface ConfirmationModalProps {
+  isOpen: boolean;
+  onRequestClose: () => void;
+  onConfirm: () => void;
+}
+
+export interface LayoutProps {
+  children: ReactNode;
+}
+
+export interface LoginFormProps {
+  setSubmitting: () => void;
+}
+
+export interface RouteProps {
+  component: React.ComponentType<any>;
+  redirectTo?: string;
 }

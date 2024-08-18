@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import css from './Navigation.module.css'
 
-export const Navigation = () => {
+export const Navigation: React.FC = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (

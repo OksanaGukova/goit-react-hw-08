@@ -1,10 +1,15 @@
 import Modal from "react-modal";
 import css from "./DeleteConfirmationModal.module.css";
+import { ConfirmationModalProps } from "../App/App.types";
 
 
 Modal.setAppElement("#root");
 
-const DeleteConfirmationModal = ({ isOpen, onRequestClose, onConfirm }) => {
+const DeleteConfirmationModal = ({
+  isOpen,
+  onRequestClose,
+  onConfirm,
+}: ConfirmationModalProps) => {
   return (
     <Modal
       isOpen={isOpen}

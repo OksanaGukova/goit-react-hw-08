@@ -6,9 +6,11 @@ import css from "./Contact.module.css";
 import { deleteContact, editContact } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
+import { ContactsProps } from "../App/App.types";
+import { AppDispatch } from "../../redux/store";
 
-export default function Contact({ id, name, number }) {
-  const dispatch = useDispatch();
+export default function Contact({ id, name, number }: ContactsProps) {
+  const dispatch: AppDispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [newName, setNewName] = useState(name);
@@ -26,7 +28,9 @@ export default function Contact({ id, name, number }) {
   };
 
   const handleSave = () => {
-    dispatch(editContact(id, { name: newName, number: newNumber }))
+    dispatch(
+      editContact({ id, updatedContact: { name: newName, number: newNumber } })
+    )
       .then(() => {
         toast.success("Contact updated successfully");
         name = newName;

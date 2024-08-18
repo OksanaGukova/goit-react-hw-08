@@ -4,10 +4,11 @@ import { changeFilter } from "../../redux/filters/slice";
 import css from "./SearchBox.module.css";
 import { selectNameFilter } from "../../redux/filters/selectors";
 import { TextField } from "@mui/material";
+import { AppDispatch } from "../../redux/store";
 
 export default function SearchBox() {
   const value = useSelector(selectNameFilter);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   return (
     <div className={css.container}>

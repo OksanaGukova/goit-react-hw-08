@@ -1,11 +1,14 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { Contact, EditContactParams } from "../../components/App/App.types";
+import {
+  ContactsProps,
+  EditContactParams,
+} from "../../components/App/App.types";
 
 axios.defaults.baseURL = "https://connections-api.goit.global/";
 
 export const fetchContacts = createAsyncThunk<
-  Contact[],
+  ContactsProps[],
   void,
   { rejectValue: string }
 >("contacts/fetchAll", async (_, thunkAPI) => {
@@ -15,16 +18,15 @@ export const fetchContacts = createAsyncThunk<
   } catch (error: unknown) {
     if (error instanceof Error) {
       return thunkAPI.rejectWithValue(error.message);
-      } else {
+    } else {
       return thunkAPI.rejectWithValue("An unknown error occurred");
     }
-    }
   }
-);
+});
 
 export const addContact = createAsyncThunk<
-  Contact,
-  Omit<Contact, "id">,
+  ContactsProps,
+  Omit<ContactsProps, "id">,
   { rejectValue: string }
 >("contacts/addContact", async (contact, thunkAPI) => {
   try {
@@ -33,16 +35,15 @@ export const addContact = createAsyncThunk<
   } catch (error: unknown) {
     if (error instanceof Error) {
       return thunkAPI.rejectWithValue(error.message);
-      } else {
+    } else {
       return thunkAPI.rejectWithValue("An unknown error occurred");
     }
-    }
   }
-);
+});
 
 export const deleteContact = createAsyncThunk<
-  { id: string },
-  string,
+  { id: number },
+  number,
   { rejectValue: string }
 >("contacts/deleteContact", async (contactId, thunkAPI) => {
   try {
@@ -59,13 +60,13 @@ export const deleteContact = createAsyncThunk<
 
 
 export const editContact = createAsyncThunk<
-  Contact,
+  ContactsProps,
   EditContactParams,
   { rejectValue: string }
 >("contacts/editContact", async ({ id, updatedContact }, thunkAPI) => {
   try {
     console.log("ID in editContact:", id);
-    const response = await axios.patch<Contact>(
+    const response = await axios.patch<ContactsProps>(
       `/contacts/${id}`,
       updatedContact
     );

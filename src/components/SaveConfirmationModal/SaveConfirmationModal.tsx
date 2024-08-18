@@ -1,7 +1,8 @@
 import React from "react";
 import css from "./SaveConfirmationModal.module.css";
+import { ConfirmationModalProps } from "../App/App.types";
 
-const SaveConfirmationModal = ({ isOpen, onRequestClose, onConfirm }) => {
+const SaveConfirmationModal = ({ isOpen, onRequestClose, onConfirm }: ConfirmationModalProps) => {
   if (!isOpen) return null;
 
   return (

@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { Contact, RootState } from "../../components/App/App.types";
+import { ContactsProps, RootState } from "../../components/App/App.types";
 
 export const selectContacts = (state: RootState) => state.contacts.items;
 
@@ -11,7 +11,7 @@ export const selectNameFilter = (state: RootState) => state.filters.name;
 
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
-  (contacts: Contact[], filter: string): Contact[] => {
+  (contacts: ContactsProps[], filter: string): ContactsProps[] => {
     if (!filter) {
       return contacts;
     }

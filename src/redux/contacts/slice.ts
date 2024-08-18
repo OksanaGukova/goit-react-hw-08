@@ -5,7 +5,7 @@ import {
   deleteContact,
   editContact,
 } from "./operations";
-import { Contact, ContactState } from "../../components/App/App.types";
+import { ContactsProps, ContactState } from "../../components/App/App.types";
 
 
 
@@ -27,37 +27,31 @@ const contactsSlice = createSlice({
       })
       .addCase(
         fetchContacts.fulfilled,
-        (state, action: PayloadAction<Contact[]>) => {
+        (state, action: PayloadAction<ContactsProps[]>) => {
           state.isLoading = false;
           state.error = null;
           state.items = action.payload;
         }
       )
-      .addCase(
-        fetchContacts.rejected,
-        (state, action) => {
-          state.isLoading = false;
-            state.error = action.error.message || null; 
-        }
-      )
+      .addCase(fetchContacts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || null;
+      })
       .addCase(addContact.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(
         addContact.fulfilled,
-        (state, action: PayloadAction<Contact>) => {
+        (state, action: PayloadAction<ContactsProps>) => {
           state.isLoading = false;
           state.error = null;
           state.items.push(action.payload);
         }
       )
-      .addCase(
-        addContact.rejected,
-        (state, action) => {
-          state.isLoading = false;
-           state.error = action.error.message || null; 
-        }
-      )
+      .addCase(addContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || null;
+      })
       .addCase(deleteContact.pending, (state) => {
         state.isLoading = true;
       })
@@ -71,19 +65,16 @@ const contactsSlice = createSlice({
           );
         }
       )
-      .addCase(
-        deleteContact.rejected,
-        (state, action) => {
-          state.isLoading = false;
-           state.error = action.error.message || null; 
-        }
-      )
+      .addCase(deleteContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || null;
+      })
       .addCase(editContact.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(
         editContact.fulfilled,
-        (state, action: PayloadAction<Contact>) => {
+        (state, action: PayloadAction<ContactsProps>) => {
           state.isLoading = false;
           state.error = null;
           const index = state.items.findIndex(
@@ -96,7 +87,7 @@ const contactsSlice = createSlice({
       )
       .addCase(editContact.rejected, (state, action) => {
         state.isLoading = false;
-       state.error = action.error.message || null; 
+        state.error = action.error.message || null;
       });
   },
 });
